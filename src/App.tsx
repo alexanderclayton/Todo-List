@@ -2,9 +2,7 @@ import React, { FC, ChangeEvent, useState } from 'react';
 import { ITask } from './Interfaces';
 import TodoTask from './components/TodoTask';
 
-
 const App: FC = () => {
-
   const [task, setTask] = useState<string>("");
   const [deadline, setDeadline] = useState<number>(0);
   const [todoList, setTodoList] = useState<ITask[]>([]);
@@ -31,32 +29,46 @@ const App: FC = () => {
   }
 
   return (
-    <div className="App">
-      <div>
-        <div>
-          <input
-            type="text"
-            placeholder="Task..."
-            name="task"
-            value={task}
-            onChange={handleChange} />
-          <input
-            type="number"
-            placeholder="Deadline (days)..."
-            name="deadline"
-            value={deadline}
-            onChange={handleChange}
-          />
+    <div className="mx-auto max-w-lg">
+      <div className="flex flex-col">
+        <div className="flex flex-col sm:flex-row">
+          <div className="flex justify-center md:flex-row flex-col">
+            <input
+              className="flex-grow border border-blue-600 rounded-md my-1 m-2 md:my-2 md:m-2 p-2 text-blue-900"
+              type="text"
+              placeholder="Task..."
+              name="task"
+              value={task}
+              onChange={handleChange}
+            />
+            <input
+              className="flex-grow border border-blue-600 rounded-md my-1 m-2 md:my-2 md:m-2 p-2 text-blue-900"
+              type="number"
+              placeholder="Deadline (days)..."
+              name="deadline"
+              value={deadline}
+              onChange={handleChange}
+            />
+          </div>
+
         </div>
-        <button onClick={addTask}>Add Task</button>
+        <div className="flex justify-center">
+          <button
+            className="rounded-full bg-red-600 text-white font-bold w-36 h-9"
+            onClick={addTask}
+          >
+            Add Task
+          </button>
+        </div>
       </div>
       <div>
         {todoList.map((task: ITask, key: number) => {
-          return <TodoTask key={key} task={task} completeTask={completeTask}/>
+          return <TodoTask key={key} task={task} completeTask={completeTask} />;
         })}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
+
