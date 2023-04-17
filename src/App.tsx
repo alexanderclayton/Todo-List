@@ -62,9 +62,14 @@ const App: FC = () => {
         </div>
       </div>
       <div>
-        {todoList.map((task: ITask, key: number) => {
-          return <TodoTask key={key} task={task} completeTask={completeTask} />;
-        })}
+        <div className="text-blue-900 font-bold m-2">
+          Tasks:
+        </div>
+        <div>
+          {todoList.map((task: ITask, key: number) => {
+            return <TodoTask key={key} task={task} completeTask={completeTask} />;
+          })}
+        </div>
       </div>
     </div>
   );
